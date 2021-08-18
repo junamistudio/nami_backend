@@ -4,16 +4,13 @@ from celery import Celery
 from celery import Task
 from celery import shared_task
 from celery.utils.log import get_task_logger
-from celery.schedules import crontab
-from datetime import timedelta
 
-from config import setting
+import setting
 from lib.redis_helper import RedisDB
 
 from task.serializer import celery_dumps, celery_loads
 from kombu.serialization import register
-from redlock import RedLock, RedLockFactory
-from celery.beat import PersistentScheduler
+from redlock import RedLockFactory
 
 register('custom', celery_dumps, celery_loads, content_type='application/x-custom-json', content_encoding='utf-8')
 logger = get_task_logger(__name__)

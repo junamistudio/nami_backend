@@ -151,7 +151,6 @@ def generate_doc_from_endpoints(routes: typing.List[tornado.web.URLSpec],
 def init_data(routes: typing.List[tornado.web.URLSpec], platform):
     from model.models import SysRoute
     from model import database
-    from config import setting
 
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 

@@ -5,11 +5,6 @@ import logging
 import os
 import signal
 import sys
-import re
-import inspect
-import collections
-import json
-import yaml
 from concurrent.futures import ThreadPoolExecutor
 
 import tornado.log
@@ -17,7 +12,7 @@ from tornado import ioloop
 from tornado.options import options
 from tornado_swagger.setup import setup_swagger
 
-from config import setting
+import setting
 from task.events import Events
 from task.worker import celery_app
 
@@ -40,7 +35,6 @@ class BaseApplication(tornado.web.Application):
             # "xsrf_cookies": True,
         })
 
-        settings.update(setting.PUB_CONF)
         if options.mode == "dev":
             setup_swagger(
                 self.routes,
@@ -82,9 +76,6 @@ class BaseApplication(tornado.web.Application):
 
     def start(self):
         self.update_route()
-        if self.options.init_data:
-            logger.info("init_data ...")
-            self.init_data()
 
         self.pool = self.pool_executor_cls(max_workers=self.max_workers)
         if self.enable_capp_event:
@@ -105,7 +96,7 @@ class BaseApplication(tornado.web.Application):
 
     def stop(self):
         if self.started:
-            logger.info('Application Stopping')
+            logger.info('stopping ...')
             if self.enable_capp_event:
                 self.events.stop()
             self.pool.shutdown(wait=False)

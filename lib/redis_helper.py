@@ -1,7 +1,7 @@
 import redis
-from config import setting
+import setting
 from shelve import Shelf
-from copy import copy, deepcopy
+from copy import deepcopy
 
 
 class RedisDB(object):

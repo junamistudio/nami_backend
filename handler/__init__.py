@@ -10,15 +10,12 @@ from http.cookies import Morsel
 
 import config
 import re
-import shortuuid
 from tornado.options import options
 from concurrent.futures import ThreadPoolExecutor
 
 import jsonschema
-import jwt
 import peewee
 from tornado.web import RequestHandler, Finish
-from config import setting
 import model
 
 from lib.permission import (
