@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Author: junami@126.com
 
-from config import setting
+import setting
 from playhouse.pool import PooledMySQLDatabase
 from playhouse.shortcuts import ReconnectMixin
 

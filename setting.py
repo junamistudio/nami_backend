@@ -31,25 +31,3 @@ COOKIE_SECRET = b64encode(uuid4().bytes + uuid4().bytes)
 TIME_ZONE = 'Asia/Shanghai'
 USE_TZ = True
 CELERY_BEAT_TZ_AWARE = True
-
-PUB_CONF = {
-    'TITLE': 'DMS',
-
-    'LOG_LEVEL': logging.DEBUG,
-
-    'DB_HOST': DB_HOST,
-    'DB_PORT': int(DB_PORT),
-    'DB_USER': DB_USER,
-    'DB_PASSWD': DB_PASSWD,
-    'DB_BASE': DB_BASE,
-
-    # redis配置
-    'REDIS_HOST': REDIS_HOST,
-    'REDIS_PORT': int(REDIS_PORT),
-    'REDIS_PASSWD': REDIS_PASSWD,
-    'REDIS_DB': int(REDIS_DB),
-
-    # jwt
-    'JWT_SECRET': JWT_SECRET,
-
-}

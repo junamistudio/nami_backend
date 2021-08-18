@@ -6,13 +6,11 @@ import atexit
 import tornado
 
 from tornado.options import define, parse_command_line, options
-from tornado.log import LogFormatter, enable_pretty_logging
-from app.app1 import Application as APP1
-from app.app1 import Application as APP2
+from tornado.log import LogFormatter
+from app.nami_app import Application as NamiApp
 from logging import NullHandler
-from config import setting
 
-define("service", default='dms', help="start service flag", metavar='app1|app2', type=str)
+define("service", default='app', help="start service flag", metavar='app|xxx', type=str)
 define('port', default=8081, type=int)
 define('mode', default='dev', metavar='dev|prd')
 define('debug', default=False)
@@ -43,11 +41,8 @@ def setup_logging():
 
 
 def runserver():
-    app = None
-    if options.service == 'app1':
-        app = APP1()
-    elif options.service == 'app2':
-        app = APP2()
+    app = NamiApp()
+
     setup_logging()
 
     atexit.register(app.stop)

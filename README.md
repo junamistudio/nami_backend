@@ -1,4 +1,4 @@
-# back-end
+# Nami
 
 #### Database( MySQL )
 ```mysql
