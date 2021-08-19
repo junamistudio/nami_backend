@@ -5,13 +5,13 @@ from copy import deepcopy
 
 
 class RedisDB(object):
-    def __init__(self, conf):
+    def __init__(self):
         self.conn = redis.Redis(
             connection_pool=redis.ConnectionPool(
-                host=conf['REDIS_HOST'],
-                port=conf['REDIS_PORT'],
-                db=conf['REDIS_DB'],
-                password=conf['REDIS_PASSWD']
+                host=setting.REDIS_HOST,
+                port=setting.REDIS_PORT,
+                db=setting.REDIS_DB,
+                password=setting.REDIS_PASSWD
             )
         )
 
@@ -125,12 +125,7 @@ class RedisShelf(Shelf):
         return self.dict.exists(self._prefix_key(key))
 
 
-redis_db = RedisDB({
-    'REDIS_HOST': setting.REDIS_HOST,
-    'REDIS_PORT': int(setting.REDIS_PORT),
-    'REDIS_DB': 10,
-    'REDIS_PASSWD': setting.REDIS_PASSWD
-})
+redis_db = RedisDB()
 
 if __name__ == '__main__':
     redis_db = RedisDB({

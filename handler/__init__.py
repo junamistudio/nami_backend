@@ -97,7 +97,7 @@ class BaseHandler(RequestHandler):
         self.user = Row()
         self.auth = auth
         self.conf = self.application.settings
-        self.redis = RedisDB(self.conf)
+        self.redis = RedisDB()
 
     @staticmethod
     def dump_json(data, pretty=False):
